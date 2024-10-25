@@ -5,8 +5,9 @@
 package Controladores;
 
 
-import de.svws_nrw.ext.jbcrypt.BCrypt;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,48 +18,41 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/RegistrarProducto")
+public class RegistrarProducto extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
-    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/Transporte";
+    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/transporte";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASS = "";
 
-    private static final String INSERT_USER_SQL = "INSERT INTO usuario (nombre, correo, telefono, password, roll) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT_USER_SQL = "INSERT INTO producto (nombre_producto,tipo_producto) VALUES (?, ?)";
 
-    public RegisterServlet() {
+    public RegistrarProducto() {
         super();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
-        String correo = request.getParameter("correo");
-        String telefono = request.getParameter("telefono");
-        String password = request.getParameter("password");
-        String roll = request.getParameter("roll");
+        String tipo_producto = request.getParameter("tipo");
+       
 
         try {
-            // Hash de la contraseña usando bcrypt antes de guardarla
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
+           
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
 
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL);
             preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2, correo);
-            preparedStatement.setString(3, telefono);
-            preparedStatement.setString(4, hashedPassword); // Guardamos la contraseña encriptada con bcrypt
-            preparedStatement.setString(5, roll);
+            preparedStatement.setString(2, tipo_producto);
+
 
             int result = preparedStatement.executeUpdate();
             
             if (result > 0) {
-                response.sendRedirect("login.jsp?success=registered");
+                response.sendRedirect("agregarProducto.jsp?success=registered");
             } else {
-                response.sendRedirect("register.jsp?error=registrationFailed");
+                response.sendRedirect("agregarProducto.jsp?error=registrationFailed");
             }
 
             preparedStatement.close();
@@ -68,9 +62,5 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("register.jsp?error=exception");
         }
     }
+
 }
-
-
-
-
-

@@ -18,7 +18,7 @@ public class DatabaseConnection {
     // Cambia estos valores a los que correspondan a tu base de datos MySQL
     private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/Transporte"; // Cambia "tu_base_de_datos" por el nombre de tu base de datos
     private static final String JDBC_USER = "root"; // Cambia "root" por tu usuario de MySQL
-    private static final String JDBC_PASS = "admin"; // Cambia "password" por tu contraseña de MySQL
+    private static final String JDBC_PASS = ""; // Cambia "password" por tu contraseña de MySQL
 
     private static Connection connection;
 

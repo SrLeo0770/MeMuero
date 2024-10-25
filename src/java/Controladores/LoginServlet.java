@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     
     private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/Transporte";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASS = "admin";
+    private static final String JDBC_PASS = "";
 
     private static final String SELECT_USER_SQL = "SELECT * FROM usuario WHERE correo = ?";
 

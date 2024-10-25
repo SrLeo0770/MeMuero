@@ -29,6 +29,31 @@
             </div>
         </div>
         
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestión de Predios</h5>
+                        <a href="agregarPredio.jsp" class="btn btn-primary">Agregar Predios</a>
+                        <a href="agregarBodega.jsp" class="btn btn-primary">Agregar Bodegas</a>
+                        <a href="agregarProducto.jsp" class="btn btn-primary">Productos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestión de Transportes</h5>
+                        <a href="agregarTransporte.jsp" class="btn btn-primary">Agregar Transporte</a>
+                        <a href="" class="btn btn-primary">Eliminar Transporte</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="text-center mt-4">
             <a href="LogoutServlet" class="btn btn-danger">Cerrar sesión</a>
         </div>
